@@ -9,10 +9,16 @@ class SubjectsProvider extends ChangeNotifier {
     getData();
   }
 
+  List<Subject> get subjects => _subjects;
+
   getData() async {
     _subjects = await LocalSave.load() ?? [];
     notifyListeners();
   }
 
-  List<Subject> get subjects => _subjects;
+  addSubject(Subject subject) {
+    _subjects.add(subject);
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
 }

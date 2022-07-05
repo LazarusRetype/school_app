@@ -15,17 +15,17 @@ class Subject {
   });
 
   Subject.fromJson(Map<String, dynamic> json)
-      : s = json["s"],
+      : name = json["name"],
+        s = json["s"],
         m = json["m"],
-        tests = json["tests"],
-        works = json["works"],
-        name = json["name"];
+        works = (json["works"] as List).map((e) => Test.fromJson(e)).toList(),
+        tests = (json["tests"] as List).map((e) => Test.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
+        "name": name,
         "s": s,
         "m": m,
-        "tests": tests,
-        "works": works,
-        "name": name,
+        "tests": tests.map((i) => i.toJson()).toList(),
+        "works": works.map((i) => i.toJson()).toList(),
       };
 }
