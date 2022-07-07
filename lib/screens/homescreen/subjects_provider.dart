@@ -21,4 +21,10 @@ class SubjectsProvider extends ChangeNotifier {
     notifyListeners();
     LocalSave.save(_subjects);
   }
+
+  removeAll() {
+    _subjects.clear();
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
 }

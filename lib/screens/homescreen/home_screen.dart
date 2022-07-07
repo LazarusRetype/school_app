@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
@@ -9,7 +11,7 @@ import 'package:school_app/screens/homescreen/subjects_tile.dart';
 import 'stats_board_model.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     IconButton(
                       icon: const Icon(Icons.account_circle_rounded),
-                      onPressed: () {},
+                      onPressed: () {
+                        value.removeAll();
+                      },
                     )
                   ],
                 ),
@@ -77,16 +81,29 @@ class HomeScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: (() => value.addSubject(Subject(
-              name: "Mathe",
-              s: 5,
-              m: 4,
-              classTests: [Grade(2), Grade(2), Grade(2)],
-              oralGrades: [Grade(2), Grade(2), Grade(2), Grade(2)],
-              shortTests: [Grade(2), Grade(2)],
-              presentations: [Grade(2)]))),
+              name: getRandomString(5),
+              s: _rnd.nextDouble() * 100,
+              m: _rnd.nextDouble() * 100,
+              classTests:
+                  List.generate(4, (index) => Grade(_rnd.nextInt(6) + 1)),
+              oralGrades: List.generate(
+                  _rnd.nextInt(10), (index) => Grade(_rnd.nextInt(6) + 1)),
+              shortTests: List.generate(
+                  _rnd.nextInt(10), (index) => Grade(_rnd.nextInt(6) + 1)),
+              presentations: List.generate(
+                _rnd.nextInt(10),
+                (index) => Grade(_rnd.nextInt(5) + 1),
+              )))),
           child: const Icon(Icons.add),
         ),
       ),
     );
   }
+
+  final _chars =
+      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  final Random _rnd = Random();
+
+  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }

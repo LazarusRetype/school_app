@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: "Nunito",
               ),
         ),
-        home: const HomeScreen(),
+        home: HomeScreen(),
       ),
     );
   }
