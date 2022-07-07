@@ -6,6 +6,8 @@ import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
 import 'package:school_app/screens/homescreen/subjects_tile.dart';
 
+import 'stats_board_model.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -36,11 +38,12 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.search)),
                     const Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Text(
-                        "Title",
+                        "Dashboard",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -52,24 +55,22 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Text("Stats"),
-              Card(),
-              Text("Subjects"),
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 30, bottom: 15),
+                child: Text("Stats"),
+              ),
+              const StatsBoard(),
 
-              //* Subjects
-              SizedBox(
-                height: 2000,
-                width: double.infinity,
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 3 / 2,
-                            crossAxisSpacing: 0,
-                            mainAxisSpacing: 0),
-                    itemCount: value.subjects.length,
-                    itemBuilder: (_, index) =>
-                        SubjectTile(value.subjects[index])),
+              const SizedBox(height: 20),
+
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 30, bottom: 15),
+                child: Text("Subjects"),
+              ),
+              Column(
+                children: <Widget>[
+                  ...value.subjects.map((e) => SubjectTile(e)).toList()
+                ],
               ),
             ],
           ),
