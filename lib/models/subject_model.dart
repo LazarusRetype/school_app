@@ -1,36 +1,37 @@
-import 'package:school_app/models/grade_model.dart';
-
 class Subject {
   String name;
-  int s;
-  int m;
-  List<Grades> tests;
-  List<Grades> oralGrades;
-  List<Grades> works;
+  double s;
+  double m;
+  List<double> shortTests;
+  List<double> classTests;
+  List<double> presentations;
+  List<double> oralGrades;
   Subject({
     required this.name,
     required this.s,
     required this.m,
-    required this.works,
+    required this.classTests,
     required this.oralGrades,
-    required this.tests,
+    required this.presentations,
+    required this.shortTests,
   });
 
   Subject.fromJson(Map<String, dynamic> json)
       : name = json["name"],
         s = json["s"],
         m = json["m"],
-        works = (json["works"] as List).map((e) => Grades.fromJson(e)).toList(),
-        tests = (json["tests"] as List).map((e) => Grades.fromJson(e)).toList(),
-        oralGrades =
-            (json["orals"] as List).map((e) => Grades.fromJson(e)).toList();
+        classTests = json["orals"] as List<double>,
+        shortTests = json["orals"] as List<double>,
+        presentations = json["orals"] as List<double>,
+        oralGrades = json["orals"] as List<double>;
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "s": s,
         "m": m,
-        "tests": tests.map((i) => i.toJson()).toList(),
-        "works": works.map((i) => i.toJson()).toList(),
-        "orals": oralGrades.map((i) => i.toJson()).toList(),
+        "tests": shortTests,
+        "works": classTests,
+        "presentations": presentations,
+        "orals": oralGrades
       };
 }
