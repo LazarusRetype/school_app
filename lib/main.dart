@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:school_app/screens/homescreen/Homescreen.dart';
+import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
 
 void main() {

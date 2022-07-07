@@ -1,16 +1,18 @@
-import 'package:school_app/models/test_model.dart';
+import 'package:school_app/models/grade_model.dart';
 
 class Subject {
   String name;
   int s;
   int m;
-  List<Test> tests;
-  List<Test> works;
+  List<Grades> tests;
+  List<Grades> oralGrades;
+  List<Grades> works;
   Subject({
     required this.name,
     required this.s,
     required this.m,
     required this.works,
+    required this.oralGrades,
     required this.tests,
   });
 
@@ -18,8 +20,10 @@ class Subject {
       : name = json["name"],
         s = json["s"],
         m = json["m"],
-        works = (json["works"] as List).map((e) => Test.fromJson(e)).toList(),
-        tests = (json["tests"] as List).map((e) => Test.fromJson(e)).toList();
+        works = (json["works"] as List).map((e) => Grades.fromJson(e)).toList(),
+        tests = (json["tests"] as List).map((e) => Grades.fromJson(e)).toList(),
+        oralGrades =
+            (json["orals"] as List).map((e) => Grades.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
         "name": name,
@@ -27,5 +31,6 @@ class Subject {
         "m": m,
         "tests": tests.map((i) => i.toJson()).toList(),
         "works": works.map((i) => i.toJson()).toList(),
+        "orals": oralGrades.map((i) => i.toJson()).toList(),
       };
 }

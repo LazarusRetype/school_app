@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school_app/models/subject_model.dart';
+import 'package:school_app/services/convert.dart';
 
 class SubjectTile extends StatelessWidget {
   Subject subject;
@@ -11,8 +12,6 @@ class SubjectTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        width: 100,
-        height: 100,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -33,10 +32,16 @@ class SubjectTile extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
+            Positioned(top: 10, left: 20, child: Text(subject.name)),
             Positioned(
-              top: 10,
+              top: 40,
               left: 20,
-              child: Text(subject.name),
+              child: Text("s: ${Convert().listToString(subject.works)}"),
+            ),
+            Positioned(
+              top: 80,
+              left: 20,
+              child: Text("m: ${Convert().listToString(subject.oralGrades)}"),
             ),
           ],
         ),
