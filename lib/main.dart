@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
 
 void main() {
   runApp(const MyApp());
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 class MyApp extends StatelessWidget {
@@ -19,12 +21,13 @@ class MyApp extends StatelessWidget {
             create: (_) => SubjectsProvider())
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(
-              fontSizeDelta: 2,
-              fontFamily: "Nunito",
-              decorationStyle: TextDecorationStyle.solid),
+                fontSizeDelta: 2,
+                fontFamily: "Nunito",
+              ),
         ),
         home: const HomeScreen(),
       ),

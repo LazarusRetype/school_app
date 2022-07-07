@@ -17,4 +17,9 @@ class LocalSave {
         ?.map((e) => Subject.fromJson(jsonDecode(e)))
         .toList();
   }
+
+  static removeAll() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }
