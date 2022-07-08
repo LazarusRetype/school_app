@@ -5,10 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
+import 'package:school_app/screens/add_screen.dart/add_screen.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
 import 'package:school_app/screens/homescreen/subjects_tile.dart';
 
-import 'stats_board_model.dart';
+import 'stats_boards.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 height: 60,
                 decoration: const BoxDecoration(
-                  color: AppColor.maintColor,
+                  color: AppColor.mainColor,
                   boxShadow: [
                     BoxShadow(
                       color: AppColor.shadowColor,
@@ -41,7 +42,21 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.search)),
+                        onPressed: (() => value.addSubject(Subject(
+                            name: getRandomString(5),
+                            s: _rnd.nextDouble() * 100,
+                            m: _rnd.nextDouble() * 100,
+                            classTests: List.generate(
+                                4, (index) => Grade(_rnd.nextInt(6) + 1)),
+                            oralGrades: List.generate(_rnd.nextInt(10),
+                                (index) => Grade(_rnd.nextInt(6) + 1)),
+                            shortTests: List.generate(_rnd.nextInt(10),
+                                (index) => Grade(_rnd.nextInt(6) + 1)),
+                            presentations: List.generate(
+                              _rnd.nextInt(10),
+                              (index) => Grade(_rnd.nextInt(5) + 1),
+                            )))),
+                        icon: const Icon(Icons.search)),
                     const Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -63,7 +78,8 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 20, top: 30, bottom: 15),
                 child: Text("Stats"),
               ),
-              const StatsBoard(),
+
+              const StatBoards(),
 
               const SizedBox(height: 20),
 
@@ -80,20 +96,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (() => value.addSubject(Subject(
-              name: getRandomString(5),
-              s: _rnd.nextDouble() * 100,
-              m: _rnd.nextDouble() * 100,
-              classTests:
-                  List.generate(4, (index) => Grade(_rnd.nextInt(6) + 1)),
-              oralGrades: List.generate(
-                  _rnd.nextInt(10), (index) => Grade(_rnd.nextInt(6) + 1)),
-              shortTests: List.generate(
-                  _rnd.nextInt(10), (index) => Grade(_rnd.nextInt(6) + 1)),
-              presentations: List.generate(
-                _rnd.nextInt(10),
-                (index) => Grade(_rnd.nextInt(5) + 1),
-              )))),
+          backgroundColor: AppColor.mainColor,
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const AddScreen())),
           child: const Icon(Icons.add),
         ),
       ),

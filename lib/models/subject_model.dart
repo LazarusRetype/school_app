@@ -2,12 +2,14 @@ import 'package:school_app/models/grade_model.dart';
 
 class Subject {
   String name;
+  double finalGrade = 0;
   double s;
   double m;
   List<Grade> shortTests;
   List<Grade> classTests;
   List<Grade> presentations;
   List<Grade> oralGrades;
+
   Subject({
     required this.name,
     required this.s,
@@ -22,6 +24,7 @@ class Subject {
       : name = json["name"],
         s = json["s"],
         m = json["m"],
+        finalGrade = json["fg"],
         classTests =
             (json["classTests"] as List).map((e) => Grade.fromJson(e)).toList(),
         shortTests =
@@ -36,6 +39,7 @@ class Subject {
         "name": name,
         "s": s,
         "m": m,
+        "fg": finalGrade,
         "shortTests": shortTests.map((i) => i.toJson()).toList(),
         "classTests": classTests.map((i) => i.toJson()).toList(),
         "presentations": presentations.map((i) => i.toJson()).toList(),
