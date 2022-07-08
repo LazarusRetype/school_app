@@ -7,7 +7,8 @@ import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/add_screen.dart/add_screen.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
-import 'package:school_app/screens/homescreen/subjects_tile.dart';
+import 'package:school_app/widgets/app_bar_widget.dart';
+import 'package:school_app/widgets/subjects_tile_widget.dart';
 
 import 'stats_boards.dart';
 
@@ -26,18 +27,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //* AppBar
-              Container(
-                height: 60,
-                decoration: const BoxDecoration(
-                  color: AppColor.mainColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColor.shadowColor,
-                      spreadRadius: 1,
-                      blurRadius: 10,
-                    )
-                  ],
-                ),
+              CustomeAppBar(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

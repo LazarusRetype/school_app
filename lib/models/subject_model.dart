@@ -3,8 +3,8 @@ import 'package:school_app/models/grade_model.dart';
 class Subject {
   String name;
   double finalGrade = 0;
-  double s;
-  double m;
+  double? s;
+  double? m;
   List<Grade> shortTests;
   List<Grade> classTests;
   List<Grade> presentations;
@@ -12,8 +12,8 @@ class Subject {
 
   Subject({
     required this.name,
-    required this.s,
-    required this.m,
+    this.s,
+    this.m,
     required this.classTests,
     required this.oralGrades,
     required this.presentations,
