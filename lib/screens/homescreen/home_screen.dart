@@ -7,7 +7,7 @@ import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/add_screen.dart/add_screen.dart';
-import 'package:school_app/screens/homescreen/subjects_provider.dart';
+import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/widgets/app_bar_widget.dart';
 import 'package:school_app/widgets/subjects_tile_widget.dart';
 
@@ -34,19 +34,10 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: (() => value.addSubject(Subject(
-                            name: getRandomString(5),
-                            s: _rnd.nextDouble() * 100,
-                            m: _rnd.nextDouble() * 100,
-                            classTests: List.generate(
-                                4, (index) => Grade(_rnd.nextInt(6) + 1)),
-                            oralGrades: List.generate(_rnd.nextInt(10),
-                                (index) => Grade(_rnd.nextInt(6) + 1)),
-                            shortTests: List.generate(_rnd.nextInt(10),
-                                (index) => Grade(_rnd.nextInt(6) + 1)),
-                            presentations: List.generate(
-                              _rnd.nextInt(10),
-                              (index) => Grade(_rnd.nextInt(5) + 1),
-                            )))),
+                              name: getRandomString(5),
+                              s: _rnd.nextDouble() * 100,
+                              m: _rnd.nextDouble() * 100,
+                            ))),
                         icon: const Icon(Icons.search)),
                     const Padding(
                       padding: EdgeInsets.only(left: AppConsts.marginSmall),
@@ -94,7 +85,7 @@ class HomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.mainColor,
           onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const AddScreen())),
+              .push(MaterialPageRoute(builder: (context) => AddScreen())),
           child: const Icon(Icons.add),
         ),
       ),

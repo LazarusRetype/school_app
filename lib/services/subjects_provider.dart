@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/services/localsave.dart';
 
@@ -21,6 +22,26 @@ class SubjectsProvider extends ChangeNotifier {
     sort();
   }
 
+  addClassTest(Subject subject, Grade grade) {
+    subjects[subjects.indexOf(subject)].classTests.add(grade);
+    sort();
+  }
+
+  addOralTest(Subject subject, Grade grade) {
+    subjects[subjects.indexOf(subject)].oralGrades.add(grade);
+    sort();
+  }
+
+  addShortTest(Subject subject, Grade grade) {
+    subjects[subjects.indexOf(subject)].shortTests.add(grade);
+    sort();
+  }
+
+  addPresentationTest(Subject subject, Grade grade) {
+    subjects[subjects.indexOf(subject)].classTests.add(grade);
+    sort();
+  }
+
   removeAll() {
     _subjects.clear();
     sort();
@@ -35,8 +56,11 @@ class SubjectsProvider extends ChangeNotifier {
 
   void calculateFinalGrade() {
     for (var s in _subjects) {
-      s.finalGrade = s.classTests.map((e) => e.grade).reduce((a, b) => a + b) /
-          s.classTests.length;
+      if (s.classTests.isNotEmpty) {
+        s.finalGrade =
+            s.classTests.reduce((a, b) => Grade(a.grade + b.grade)).grade /
+                s.classTests.length;
+      }
     }
   }
 }

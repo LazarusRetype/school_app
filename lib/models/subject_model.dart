@@ -5,19 +5,15 @@ class Subject {
   double finalGrade = 0;
   double? s;
   double? m;
-  List<Grade> shortTests;
-  List<Grade> classTests;
-  List<Grade> presentations;
-  List<Grade> oralGrades;
+  List<Grade> shortTests = [];
+  List<Grade> classTests = [];
+  List<Grade> presentations = [];
+  List<Grade> oralGrades = [];
 
   Subject({
     required this.name,
     this.s,
     this.m,
-    required this.classTests,
-    required this.oralGrades,
-    required this.presentations,
-    required this.shortTests,
   });
 
   Subject.fromJson(Map<String, dynamic> json)

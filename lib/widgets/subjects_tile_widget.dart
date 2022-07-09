@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/detail_screen.dart/detail_screen.dart';
+import 'package:school_app/services/subjects_provider.dart';
 
 class SubjectTile extends StatelessWidget {
   Subject subject;
@@ -13,8 +15,13 @@ class SubjectTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: GestureDetector(
-        onTap: (() => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailScreen(subject)))),
+        onTap: (() => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                    Provider.of<SubjectsProvider>(context)
+                        .subjects
+                        .indexOf(subject))))),
         child: Container(
           height: 100,
           decoration: const BoxDecoration(
