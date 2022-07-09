@@ -31,7 +31,9 @@ class AddScreen extends StatelessWidget {
                       right: MediaQuery.of(context).size.width / 2 - 70),
                   child: const Text(
                     "Add new Subject",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppConsts.fontSizeTitle),
                   ),
                 ),
               ],
@@ -41,9 +43,9 @@ class AddScreen extends StatelessWidget {
           //*Settings
           Padding(
             padding: const EdgeInsets.only(
-                left: AppConsts.edgeMargin,
-                right: AppConsts.edgeMargin,
-                top: AppConsts.topAfterAppBarMargin),
+                left: AppConsts.marginEdge,
+                right: AppConsts.marginEdge,
+                top: AppConsts.marginAppBar),
             child: TextFormField(
               decoration: const InputDecoration(
                   border: OutlineInputBorder(

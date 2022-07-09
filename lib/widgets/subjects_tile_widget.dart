@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constants/app_colors.dart';
+import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/detail_screen.dart/detail_screen.dart';
 
@@ -21,15 +22,13 @@ class SubjectTile extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: AppColor.shadowColor,
-                blurRadius: 10,
-                spreadRadius: 1,
+                blurRadius: AppConsts.shadowBlur,
+                spreadRadius: AppConsts.shadowSpread,
+                offset: Offset(AppConsts.shadowOffset, AppConsts.shadowOffset),
               ),
             ],
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-              topRight: Radius.circular(10),
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppConsts.cornerRadius),
             ),
           ),
           child: Stack(

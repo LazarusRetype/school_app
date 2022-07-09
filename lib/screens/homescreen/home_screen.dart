@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
+import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/add_screen.dart/add_screen.dart';
@@ -48,11 +49,12 @@ class HomeScreen extends StatelessWidget {
                             )))),
                         icon: const Icon(Icons.search)),
                     const Padding(
-                      padding: EdgeInsets.only(left: 8.0),
+                      padding: EdgeInsets.only(left: AppConsts.marginSmall),
                       child: Text(
                         "Dashboard",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                            fontWeight: FontWeight.bold,
+                            fontSize: AppConsts.fontSizeTitle),
                       ),
                     ),
                     IconButton(
@@ -65,16 +67,20 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 20, top: 30, bottom: 15),
+                padding: EdgeInsets.only(
+                    left: AppConsts.marginEdge,
+                    top: AppConsts.marginAppBar,
+                    bottom: AppConsts.marginSmall),
                 child: Text("Stats"),
               ),
 
               const StatBoards(),
 
-              const SizedBox(height: 20),
-
               const Padding(
-                padding: EdgeInsets.only(left: 20, top: 30, bottom: 15),
+                padding: EdgeInsets.only(
+                    left: AppConsts.marginEdge,
+                    top: AppConsts.marginBig,
+                    bottom: AppConsts.marginSmall),
                 child: Text("Subjects"),
               ),
               Column(

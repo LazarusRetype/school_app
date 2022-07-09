@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constants/app_colors.dart';
+import 'package:school_app/constants/app_consts.dart';
 
 class StatsCard extends StatelessWidget {
   Widget child;
@@ -19,15 +20,16 @@ class StatsCard extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: AppColor.onBackgroundColor,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+                  Radius.circular(AppConsts.cornerRadius),
                 ),
                 boxShadow: [
                   BoxShadow(
                     color: AppColor.shadowColor,
-                    blurRadius: 7,
-                    spreadRadius: 1,
+                    blurRadius: AppConsts.shadowBlur,
+                    spreadRadius: AppConsts.shadowSpread,
                     blurStyle: BlurStyle.normal,
-                    offset: Offset(3, 3),
+                    offset:
+                        Offset(AppConsts.shadowOffset, AppConsts.shadowOffset),
                   ),
                 ],
               ),

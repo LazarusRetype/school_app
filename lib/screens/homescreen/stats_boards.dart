@@ -1,6 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/widgets/stats_card_widget.dart';
 import 'package:school_app/screens/homescreen/subjects_provider.dart';
@@ -37,7 +38,7 @@ class StatBoards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(AppConsts.marginSmall),
                   child: Text("Top ${subjects.length} subjects",
                       style: const TextStyle(fontSize: 14)),
                 ),
@@ -59,7 +60,7 @@ class StatBoards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(AppConsts.marginSmall),
                   child: Text("Top ${subjects.length} subjects",
                       style: const TextStyle(fontSize: 14)),
                 ),
@@ -81,7 +82,7 @@ class StatBoards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(AppConsts.marginSmall),
                   child: Text("Top ${subjects.length} subjects",
                       style: const TextStyle(fontSize: 14)),
                 ),

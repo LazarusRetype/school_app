@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constants/app_colors.dart';
+import 'package:school_app/constants/app_consts.dart';
 
 class CustomeAppBar extends StatelessWidget {
   final Widget child;
@@ -8,14 +9,15 @@ class CustomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: AppConsts.appBarHeight,
       decoration: const BoxDecoration(
         color: AppColor.mainColor,
         boxShadow: [
           BoxShadow(
             color: AppColor.shadowColor,
-            spreadRadius: 1,
-            blurRadius: 10,
+            spreadRadius: AppConsts.shadowSpread,
+            blurRadius: AppConsts.shadowBlur,
+            offset: Offset(AppConsts.shadowOffset, AppConsts.shadowOffset),
           )
         ],
       ),
