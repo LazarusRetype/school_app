@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
 
-class CustomTextInput extends StatelessWidget {
+class CustomTextInput extends StatefulWidget {
   final String lable;
   final TextEditingController controller;
   final int? maxLength;
@@ -24,6 +24,18 @@ class CustomTextInput extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CustomTextInput> createState() => _CustomTextInputState();
+}
+
+class _CustomTextInputState extends State<CustomTextInput> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.controller.text = widget.initialValue ?? "";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(
@@ -33,15 +45,14 @@ class CustomTextInput extends StatelessWidget {
       height: 115,
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        validator: valitation,
-        keyboardType: inputType,
-        inputFormatters: formater,
-        initialValue: initialValue,
-        controller: controller,
-        maxLength: maxLength != 0 ? maxLength : null,
+        validator: widget.valitation,
+        keyboardType: widget.inputType,
+        inputFormatters: widget.formater,
+        controller: widget.controller,
+        maxLength: widget.maxLength != 0 ? widget.maxLength : null,
         cursorColor: AppColor.cursorColor,
         decoration: InputDecoration(
-          labelText: lable,
+          labelText: widget.lable,
           labelStyle: const TextStyle(color: AppColor.textColor),
           focusedBorder: const UnderlineInputBorder(),
           enabledBorder: const UnderlineInputBorder(),

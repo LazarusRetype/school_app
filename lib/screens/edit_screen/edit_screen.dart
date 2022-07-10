@@ -1,8 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/subject_model.dart';
+import 'package:school_app/screens/edit_screen/components/edit_app_bar.dart';
+import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/widgets/app_bar_widget.dart';
 import 'package:school_app/widgets/button_widget.dart';
@@ -28,43 +32,30 @@ class EditScreen extends StatelessWidget {
           child: Column(
             children: [
               //*Appbar
-              CustomeAppBar(
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      left: 0,
-                      child: IconButton(
-                          onPressed: (() => Navigator.of(context).pop()),
-                          icon: const Icon(Icons.arrow_back)),
-                    ),
-                    Text(
-                      value.subjects[subjectIndex].name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: AppConsts.fontSizeTitle),
-                    ),
-                  ],
-                ),
-              ),
+              EditAppBar(
+                  title: value.subjects[subjectIndex].name == ""
+                      ? "Neues Fach erstellen"
+                      : value.subjects[subjectIndex].name),
 
               //*Settings
               const SizedBox(height: 30),
+
               CustomTextInput(
-                controller: nameTextController,
-                initialValue: value.subjects[subjectIndex].name,
-                lable: "Fächername",
-                maxLength: 20,
-                valitation: (text) => text == null || text.isEmpty
-                    ? 'Bitte etwas eingeben'
-                    : null,
-              ),
+                  controller: nameTextController,
+                  initialValue: value.subjects[subjectIndex].name,
+                  lable: "Fächername",
+                  maxLength: 20,
+                  valitation: (text) => text == null || text.isEmpty
+                      ? 'Bitte etwas eingeben'
+                      : null),
               Row(
                 children: [
+                  Text("schriftlich/mündlich: "),
                   Flexible(
                     child: CustomTextInput(
                       controller: sTextController,
-                      lable: "schriftlich",
+                      initialValue: value.subjects[subjectIndex].s.toString(),
+                      lable: "s",
                       formater: [
                         FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))
                       ],
@@ -77,7 +68,8 @@ class EditScreen extends StatelessWidget {
                   Flexible(
                     child: CustomTextInput(
                       controller: mTextController,
-                      lable: "mündlich",
+                      initialValue: value.subjects[subjectIndex].m.toString(),
+                      lable: "m",
                       formater: [
                         FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))
                       ],
@@ -92,8 +84,9 @@ class EditScreen extends StatelessWidget {
               CustomButtom(
                 function: () {
                   if (_formKey.currentState!.validate()) {
-                    Provider.of<SubjectsProvider>(context, listen: false)
-                        .addSubject(Subject(
+                    value.changeSubject(
+                        subjectIndex,
+                        Subject(
                             name: nameTextController.text,
                             m: double.parse(mTextController.text == ""
                                 ? "1"
@@ -101,10 +94,13 @@ class EditScreen extends StatelessWidget {
                             s: double.parse(sTextController.text == ""
                                 ? "1"
                                 : sTextController.text)));
-                    Navigator.pop(context);
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => HomeScreen()));
                   }
                 },
-                lable: 'Hinzufügen',
+                lable: value.subjects[subjectIndex].name == ""
+                    ? "Hinzufügen"
+                    : "Bearbeiten",
               ),
             ],
           ),

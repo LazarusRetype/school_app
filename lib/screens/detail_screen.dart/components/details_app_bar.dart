@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/screens/edit_screen/edit_screen.dart';
+import 'package:school_app/screens/homescreen/home_screen.dart';
+import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/widgets/app_bar_widget.dart';
 
 class DetailAppBar extends StatelessWidget {
@@ -42,6 +45,18 @@ class DetailAppBar extends StatelessWidget {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) =>
                             EditScreen(subjectIndex: indexOfSubject))),
+                  ),
+                ),
+                PopupMenuItem(
+                  child: ListTile(
+                    leading: const Icon(Icons.edit),
+                    title: const Text('Fach löschen'),
+                    onTap: () {
+                      Provider.of<SubjectsProvider>(context, listen: false)
+                          .remove(indexOfSubject);
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => HomeScreen()));
+                    },
                   ),
                 ),
               ],

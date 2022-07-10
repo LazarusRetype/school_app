@@ -12,8 +12,8 @@ class Subject {
 
   Subject({
     required this.name,
-    this.s,
-    this.m,
+    this.s = 1,
+    this.m = 1,
   });
 
   Subject.fromJson(Map<String, dynamic> json)

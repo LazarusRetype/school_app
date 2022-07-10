@@ -63,4 +63,14 @@ class SubjectsProvider extends ChangeNotifier {
       }
     }
   }
+
+  void changeSubject(int index, Subject subject) {
+    subjects[index] = subject;
+    sort();
+  }
+
+  void remove(int indexOfSubject) {
+    subjects.removeAt(indexOfSubject);
+    sort();
+  }
 }
