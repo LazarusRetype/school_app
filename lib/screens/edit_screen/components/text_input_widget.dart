@@ -7,6 +7,7 @@ class CustomTextInput extends StatelessWidget {
   final String lable;
   final TextEditingController controller;
   final int? maxLength;
+  final String? initialValue;
   final TextInputType? inputType;
   final List<TextInputFormatter>? formater;
   final String? Function(String?) valitation;
@@ -18,6 +19,7 @@ class CustomTextInput extends StatelessWidget {
     this.inputType,
     this.maxLength,
     this.formater,
+    this.initialValue,
     required this.valitation,
   }) : super(key: key);
 
@@ -34,6 +36,7 @@ class CustomTextInput extends StatelessWidget {
         validator: valitation,
         keyboardType: inputType,
         inputFormatters: formater,
+        initialValue: initialValue,
         controller: controller,
         maxLength: maxLength != 0 ? maxLength : null,
         cursorColor: AppColor.cursorColor,

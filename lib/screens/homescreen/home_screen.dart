@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
-import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
-import 'package:school_app/screens/add_screen.dart/add_screen.dart';
+import 'package:school_app/screens/edit_screen/edit_screen.dart';
+import 'package:school_app/screens/homescreen/components/costume_app_bar.dart';
 import 'package:school_app/services/subjects_provider.dart';
-import 'package:school_app/widgets/app_bar_widget.dart';
-import 'package:school_app/widgets/subjects_tile_widget.dart';
+import 'package:school_app/screens/homescreen/components/subjects_tile_widget.dart';
 
-import 'stats_boards.dart';
+import 'components/stats_boards.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -28,35 +27,13 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //* AppBar
-              CustomeAppBar(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: (() => value.addSubject(Subject(
-                              name: getRandomString(5),
-                              s: _rnd.nextDouble() * 100,
-                              m: _rnd.nextDouble() * 100,
-                            ))),
-                        icon: const Icon(Icons.search)),
-                    const Padding(
-                      padding: EdgeInsets.only(left: AppConsts.marginSmall),
-                      child: Text(
-                        "Dashboard",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: AppConsts.fontSizeTitle),
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.account_circle_rounded),
-                      onPressed: () {
-                        value.removeAll();
-                      },
-                    )
-                  ],
-                ),
-              ),
+              CustomAppBar(
+                  onPress: (() => value.addSubject(Subject(
+                        name: getRandomString(5),
+                        s: _rnd.nextDouble() * 100,
+                        m: _rnd.nextDouble() * 100,
+                      ))),
+                  onPress2: (() => value.removeAll())),
               const Padding(
                 padding: EdgeInsets.only(
                     left: AppConsts.marginEdge,
@@ -84,8 +61,12 @@ class HomeScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.mainColor,
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddScreen())),
+          onPressed: () {
+            value.subjects.add(Subject(name: ""));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    EditScreen(subjectIndex: value.subjects.length)));
+          },
           child: const Icon(Icons.add),
         ),
       ),

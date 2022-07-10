@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/subject_model.dart';
-import 'package:school_app/widgets/stats_card_widget.dart';
+import 'package:school_app/screens/homescreen/components/stats_card_widget.dart';
 import 'package:school_app/services/subjects_provider.dart';
 
 class StatBoards extends StatelessWidget {
