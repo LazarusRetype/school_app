@@ -35,8 +35,8 @@ class SubmitNewSubjectButton extends StatelessWidget {
                   s: double.parse(sTextController.text == ""
                       ? "1"
                       : sTextController.text)));
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const HomeScreen()));
         }
       },
       lable: "Hinzufügen",

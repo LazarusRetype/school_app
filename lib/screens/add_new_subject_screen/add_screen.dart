@@ -1,37 +1,23 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:school_app/constants/app_colors.dart';
-import 'package:school_app/constants/app_consts.dart';
-import 'package:school_app/models/grade_model.dart';
-import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/add_new_subject_screen/components/add_button.dart';
-import 'package:school_app/screens/edit_screen/components/add_grade_widget.dart';
 import 'package:school_app/screens/edit_screen/components/edit_app_bar.dart';
-import 'package:school_app/screens/edit_screen/components/edit_lists.dart';
-import 'package:school_app/screens/edit_screen/components/new_number_text_field_widget.dart';
-import 'package:school_app/screens/edit_screen/components/number_indicator_widget.dart';
-import 'package:school_app/screens/edit_screen/edit_screen.dart';
-import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';
-import 'package:school_app/widgets/app_bar_widget.dart';
-import 'package:school_app/widgets/button_widget.dart';
 import 'package:school_app/screens/edit_screen/components/text_input_widget.dart';
-import 'package:school_app/widgets/title_text.dart';
 
 class AddScreen extends StatelessWidget {
   AddScreen({Key? key, required this.subjectIndex}) : super(key: key);
   final int subjectIndex;
 
-  var nameTextController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
 
-  var mTextController = TextEditingController();
+  final TextEditingController mTextController = TextEditingController();
 
-  var sTextController = TextEditingController();
+  final TextEditingController sTextController = TextEditingController();
 
-  var classTestsTextController = TextEditingController();
+  final TextEditingController classTestsTextController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 

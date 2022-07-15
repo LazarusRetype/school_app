@@ -12,10 +12,11 @@ class EditScreen extends StatelessWidget {
   EditScreen({Key? key, required this.subjectIndex}) : super(key: key);
   final int subjectIndex;
 
-  var mTextController = TextEditingController();
-  var sTextController = TextEditingController();
-  var nameTextController = TextEditingController();
-  var classTestsTextController = TextEditingController();
+  final TextEditingController mTextController = TextEditingController();
+  final TextEditingController sTextController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
+  final TextEditingController classTestsTextController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 

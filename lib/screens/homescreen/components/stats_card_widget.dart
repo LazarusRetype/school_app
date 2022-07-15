@@ -3,8 +3,8 @@ import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
 
 class StatsCard extends StatelessWidget {
-  Widget child;
-  StatsCard({Key? key, required this.child}) : super(key: key);
+  final Widget child;
+  const StatsCard({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

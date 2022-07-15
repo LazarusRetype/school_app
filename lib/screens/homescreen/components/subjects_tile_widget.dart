@@ -7,8 +7,8 @@ import 'package:school_app/screens/detail_screen.dart/detail_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';
 
 class SubjectTile extends StatelessWidget {
-  Subject subject;
-  SubjectTile(this.subject, {Key? key}) : super(key: key);
+  final Subject subject;
+  const SubjectTile(this.subject, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -63,7 +63,7 @@ class DetailAppBar extends StatelessWidget {
                           .remove(indexOfSubject);
 
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => HomeScreen()),
+                          MaterialPageRoute(builder: (_) => const HomeScreen()),
                           (Route<dynamic> route) => false);
                     },
                   ),
