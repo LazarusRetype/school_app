@@ -25,7 +25,9 @@ class StatBoards extends StatelessWidget {
           data: subjects,
           domainFn: (Subject s, _) => s.name,
           measureFn: (Subject s, _) {
-            return s.classTests.length > index ? s.classTests[index].grade : 0;
+            return s.gradeLists[0].length > index
+                ? s.gradeLists[0][index].grade
+                : 0;
           });
     });
 

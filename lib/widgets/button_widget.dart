@@ -14,16 +14,19 @@ class CustomButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: function,
-        child: Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width - AppConsts.marginEdge * 2,
-          decoration: const BoxDecoration(
-              color: AppColor.mainColor,
-              borderRadius:
-                  BorderRadius.all(Radius.circular(AppConsts.cornerRadius))),
-          child: Center(child: Text(lable)),
-        ));
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppConsts.marginEdge, vertical: AppConsts.marginBig),
+      child: GestureDetector(
+          onTap: function,
+          child: Container(
+            height: 50, //Todo not hardcode that
+            decoration: const BoxDecoration(
+                color: AppColor.mainColor,
+                borderRadius:
+                    BorderRadius.all(Radius.circular(AppConsts.cornerRadius))),
+            child: Center(child: Text(lable)),
+          )),
+    );
   }
 }

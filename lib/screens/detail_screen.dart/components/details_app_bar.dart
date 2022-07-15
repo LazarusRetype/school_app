@@ -28,10 +28,17 @@ class DetailAppBar extends StatelessWidget {
                 onPressed: (() => Navigator.of(context).pop()),
                 icon: const Icon(Icons.arrow_back)),
           ),
-          Text(
-            subject,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: AppConsts.fontSizeTitle),
+          Hero(
+            tag: subject,
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                subject,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: AppConsts.fontSizeTitle),
+              ),
+            ),
           ),
           Positioned(
             right: 0,
@@ -54,8 +61,10 @@ class DetailAppBar extends StatelessWidget {
                     onTap: () {
                       Provider.of<SubjectsProvider>(context, listen: false)
                           .remove(indexOfSubject);
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => HomeScreen()));
+
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => HomeScreen()),
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),

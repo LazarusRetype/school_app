@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               child: Text("Stats"),
             ),
 
-            const StatBoards(),
+            //const StatBoards(), //TODO make stats
 
             const SubjectList(),
           ],

@@ -41,7 +41,14 @@ class SubjectTile extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Positioned(top: 10, left: 20, child: Text(subject.name)),
+              Positioned(
+                  top: 10,
+                  left: 20,
+                  child: Hero(
+                      tag: subject.name,
+                      child: Material(
+                          color: Colors.transparent,
+                          child: Text(subject.name)))),
             ],
           ),
         ),

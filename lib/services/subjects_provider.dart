@@ -14,63 +14,46 @@ class SubjectsProvider extends ChangeNotifier {
 
   getData() async {
     _subjects = await LocalSave.load() ?? [];
-    sort();
-  }
-
-  addSubject(Subject subject) {
-    _subjects.add(subject);
-    sort();
-  }
-
-  addClassTest(Subject subject, Grade grade) {
-    subjects[subjects.indexOf(subject)].classTests.add(grade);
-    sort();
-  }
-
-  addOralTest(Subject subject, Grade grade) {
-    subjects[subjects.indexOf(subject)].oralGrades.add(grade);
-    sort();
-  }
-
-  addShortTest(Subject subject, Grade grade) {
-    subjects[subjects.indexOf(subject)].shortTests.add(grade);
-    sort();
-  }
-
-  addPresentationTest(Subject subject, Grade grade) {
-    subjects[subjects.indexOf(subject)].classTests.add(grade);
-    sort();
-  }
-
-  removeAll() {
-    _subjects.clear();
-    sort();
-  }
-
-  sort() {
-    calculateFinalGrade();
-    _subjects.sort((a, b) => a.finalGrade.compareTo(b.finalGrade));
     notifyListeners();
     LocalSave.save(_subjects);
   }
 
-  void calculateFinalGrade() {
+  addSubject(Subject subject) {
+    _subjects.add(subject);
+    //sort();
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
+
+  removeAll() {
+    _subjects.clear();
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
+
+  sort() {
+    calculateFinalGradeAtFirstIndex();
+    _subjects.sort((a, b) => a.finalGrade.compareTo(b.finalGrade));
+  }
+
+  void calculateFinalGradeAtFirstIndex() {
     for (var s in _subjects) {
-      if (s.classTests.isNotEmpty) {
+      if (s.gradeLists[0].isNotEmpty) {
         s.finalGrade =
-            s.classTests.reduce((a, b) => Grade(a.grade + b.grade)).grade /
-                s.classTests.length;
+            s.gradeLists[0].reduce((a, b) => Grade(a.grade + b.grade)).grade /
+                s.gradeLists[0].length;
       }
     }
   }
 
-  void changeSubject(int index, Subject subject) {
-    subjects[index] = subject;
+  void changeSubject(int subjectIndex, Subject subject) {
+    subjects[subjectIndex] = subject;
     sort();
   }
 
   void remove(int indexOfSubject) {
     subjects.removeAt(indexOfSubject);
     sort();
+    LocalSave.save(_subjects);
   }
 }
