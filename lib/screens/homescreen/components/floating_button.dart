@@ -16,7 +16,6 @@ class FloatingButton extends StatelessWidget {
       builder: (context, value, child) => FloatingActionButton(
         backgroundColor: AppColor.mainColor,
         onPressed: () {
-          value.subjects.add(Subject(name: ""));
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
                   AddScreen(subjectIndex: value.subjects.length - 1)));

@@ -38,19 +38,28 @@ class AddScreen extends StatelessWidget {
 
               CustomTextInput(
                   controller: nameTextController,
-                  initialValue: value.subjects[subjectIndex].name,
+                  initialValue: "",
                   lable: "Fächername",
                   maxLength: 20,
-                  valitation: (text) => text == null || text.isEmpty
-                      ? 'Bitte etwas eingeben'
-                      : null),
+                  valitation: (text) {
+                    if (text == null || text.isEmpty) {
+                      return 'Bitte etwas eingeben';
+                    } else if (value.subjects
+                        .map((e) => e.name)
+                        .toList()
+                        .contains(text)) {
+                      return 'Dieses Fach wurde schon erstellt';
+                    } else {
+                      return null;
+                    }
+                  }),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
                     child: CustomTextInput(
                       controller: sTextController,
-                      initialValue: value.subjects[subjectIndex].s.toString(),
+                      initialValue: "",
                       lable: "schriftlich",
                       formater: [
                         FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))
@@ -65,7 +74,7 @@ class AddScreen extends StatelessWidget {
                   Flexible(
                     child: CustomTextInput(
                       controller: mTextController,
-                      initialValue: value.subjects[subjectIndex].m.toString(),
+                      initialValue: "",
                       lable: "mündlich",
                       formater: [
                         FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))

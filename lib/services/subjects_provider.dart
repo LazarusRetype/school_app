@@ -56,4 +56,11 @@ class SubjectsProvider extends ChangeNotifier {
     sort();
     LocalSave.save(_subjects);
   }
+
+  void addGradeList(String name, int subjectIndex) {
+    subjects[subjectIndex].gradeLists.add([]);
+    subjects[subjectIndex].gradeListNames.add(name);
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';
@@ -27,14 +28,14 @@ class SubmitNewSubjectButton extends StatelessWidget {
     return CustomButtom(
       function: () {
         if (_formKey.currentState!.validate()) {
-          Provider.of<SubjectsProvider>(context, listen: false).addSubject(
-              Subject(
-                  name: nameTextController.text,
-                  m: double.parse(
-                      mTextController.text == "" ? "1" : mTextController.text),
-                  s: double.parse(sTextController.text == ""
-                      ? "1"
-                      : sTextController.text)));
+          Provider.of<SubjectsProvider>(context, listen: false)
+              .addSubject(Subject(
+            name: nameTextController.text,
+            m: double.parse(
+                mTextController.text == "" ? "1" : mTextController.text),
+            s: double.parse(
+                sTextController.text == "" ? "1" : sTextController.text),
+          ));
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => const HomeScreen()));
         }

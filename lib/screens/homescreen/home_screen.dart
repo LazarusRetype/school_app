@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/screens/homescreen/components/costume_app_bar.dart';
 import 'package:school_app/screens/homescreen/components/floating_button.dart';
 import 'package:school_app/screens/homescreen/components/subjects_list.dart';
+import 'package:school_app/services/localsave.dart';
+import 'package:school_app/services/subjects_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +22,12 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //* App Bar
-            CustomAppBar(onPress: (() {}), onPress2: (() {})),
+            CustomAppBar(
+                onPress: (() {
+                  LocalSave.removeAll();
+                  print("all deleted");
+                }),
+                onPress2: (() {})),
             const Padding(
               padding: EdgeInsets.only(
                   left: AppConsts.marginEdge,

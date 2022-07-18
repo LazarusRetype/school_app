@@ -9,17 +9,15 @@ import 'package:school_app/services/subjects_provider.dart';
 class EditList extends StatelessWidget {
   const EditList({
     Key? key,
+    required this.list,
     required this.subjectIndex,
     required this.listIndex,
   }) : super(key: key);
+  final List<Grade> list;
   final int subjectIndex, listIndex;
 
   @override
   Widget build(BuildContext context) {
-    List<Grade> list = Provider.of<SubjectsProvider>(context)
-        .subjects[subjectIndex]
-        .gradeLists[listIndex];
-
     return Container(
       height: 50,
       padding: const EdgeInsets.only(
