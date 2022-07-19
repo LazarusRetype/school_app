@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/models/subject_model.dart';
+import 'package:school_app/screens/detail_screen.dart/detail_screen.dart';
 import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/widgets/button_widget.dart';
@@ -27,6 +28,8 @@ class SubmitButton extends StatelessWidget {
     return CustomButtom(
       function: () {
         if (_formKey.currentState!.validate()) {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => DetailScreen(subjectIndex)));
           Provider.of<SubjectsProvider>(context, listen: false).changeSubject(
               subjectIndex,
               Subject(
@@ -36,8 +39,6 @@ class SubmitButton extends StatelessWidget {
                   s: double.parse(sTextController.text == ""
                       ? "1"
                       : sTextController.text)));
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const HomeScreen()));
         }
       },
       lable: "Bearbeiten",

@@ -20,7 +20,18 @@ class SubjectsProvider extends ChangeNotifier {
 
   addSubject(Subject subject) {
     _subjects.add(subject);
-    //sort();
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
+
+  addGrade(int subjectIndex, listIndex, Grade grade) {
+    _subjects[subjectIndex].gradeLists[listIndex].add(grade);
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
+
+  setGrade(int subjectIndex, listIndex, gradeIndex, Grade grade) {
+    _subjects[subjectIndex].gradeLists[listIndex][gradeIndex] = grade;
     notifyListeners();
     LocalSave.save(_subjects);
   }
@@ -47,19 +58,25 @@ class SubjectsProvider extends ChangeNotifier {
   }
 
   void changeSubject(int subjectIndex, Subject subject) {
-    subjects[subjectIndex] = subject;
-    sort();
+    _subjects[subjectIndex].m = subject.m;
+    _subjects[subjectIndex].s = subject.s;
+    _subjects[subjectIndex].name = subject.name;
   }
 
   void remove(int indexOfSubject) {
-    subjects.removeAt(indexOfSubject);
-    sort();
+    _subjects.removeAt(indexOfSubject);
     LocalSave.save(_subjects);
   }
 
   void addGradeList(String name, int subjectIndex) {
-    subjects[subjectIndex].gradeLists.add([]);
-    subjects[subjectIndex].gradeListNames.add(name);
+    _subjects[subjectIndex].gradeLists.add([]);
+    _subjects[subjectIndex].gradeListNames.add(name);
+    notifyListeners();
+    LocalSave.save(_subjects);
+  }
+
+  void setGradeListName(String name, int subjectIndex, listIndex) {
+    _subjects[subjectIndex].gradeListNames[listIndex] = name;
     notifyListeners();
     LocalSave.save(_subjects);
   }

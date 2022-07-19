@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/screens/edit_screen/components/add_grade_widget.dart';
-import 'package:school_app/screens/edit_screen/components/number_indicator_widget.dart';
+import 'package:school_app/screens/edit_screen/components/number_indicator_button_widget.dart';
 import 'package:school_app/services/subjects_provider.dart';
 
 class EditList extends StatelessWidget {
@@ -27,10 +27,17 @@ class EditList extends StatelessWidget {
         itemCount: list.length + 1,
         itemBuilder: (BuildContext context, int index) {
           if (index < list.length) {
-            return NumberIndicator(number: list[index].grade);
+            return NumberIndicatorButton(
+                number: list[index].grade,
+                gradeIndex: index,
+                subjectIndex: subjectIndex,
+                listIndex: listIndex);
           } else {
             return AddGradeButton(
-                listIndex: listIndex, subjectIndex: subjectIndex);
+              listIndex: listIndex,
+              subjectIndex: subjectIndex,
+              gradeIndex: index,
+            );
           }
         },
       ),

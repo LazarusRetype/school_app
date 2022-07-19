@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/models/subject_model.dart';
 import 'package:school_app/screens/homescreen/home_screen.dart';
 import 'package:school_app/services/subjects_provider.dart';

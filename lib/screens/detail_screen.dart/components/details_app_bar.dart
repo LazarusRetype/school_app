@@ -47,12 +47,11 @@ class DetailAppBar extends StatelessWidget {
               itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                 PopupMenuItem(
                   child: ListTile(
-                    leading: const Icon(Icons.edit),
-                    title: const Text('Fach bearbeiten'),
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) =>
-                            EditScreen(subjectIndex: indexOfSubject))),
-                  ),
+                      leading: const Icon(Icons.edit),
+                      title: const Text('Fach bearbeiten'),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) =>
+                              EditScreen(subjectIndex: indexOfSubject)))),
                 ),
                 PopupMenuItem(
                   child: ListTile(

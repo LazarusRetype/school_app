@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/grade_model.dart';
 import 'package:school_app/screens/detail_screen.dart/components/details_app_bar.dart';
+import 'package:school_app/screens/detail_screen.dart/components/grade_list.dart';
 import 'package:school_app/services/subjects_provider.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -32,14 +33,23 @@ class DetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // Table(
-            //   children: [
-            //     ...value.subjects[subjectIndex].gradeLists.map((e) =>
-            //         TableRow(children: [
-            //           ...e.map(((Grade grade) => Text(grade.grade.toString())))
-            //         ]))
-            //   ],
-            // )
+            Column(
+              children: [
+                for (var i = 0;
+                    i < value.subjects[subjectIndex].gradeLists.length;
+                    i++)
+                  Column(
+                    children: [
+                      Text(value.subjects[subjectIndex].gradeListNames[i]),
+                      GradesList(
+                        list: value.subjects[subjectIndex].gradeLists[i],
+                        subjectIndex: subjectIndex,
+                        listIndex: i,
+                      ),
+                    ],
+                  )
+              ],
+            )
           ],
         );
       }),

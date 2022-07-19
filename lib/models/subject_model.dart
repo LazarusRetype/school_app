@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:school_app/models/grade_model.dart';
 
+part 'subject_model.g.dart';
+
+@JsonSerializable()
 class Subject {
   String name;
   double finalGrade = 0;
@@ -14,6 +18,11 @@ class Subject {
     this.s = 1,
     this.m = 1,
   });
+
+  factory Subject.fromJson(Map<String, dynamic> json) =>
+      _$SubjectFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SubjectToJson(this);
 
   // Subject.fromJson(Map<String, dynamic> json)
   //     : name = json["name"],
