@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/models/grade_model.dart';
-import 'package:school_app/screens/edit_screen/components/add_grade_widget.dart';
+import 'package:school_app/screens/edit_screen/components/edit_grade_dialog.dart';
 import 'package:school_app/screens/edit_screen/components/number_indicator_button_widget.dart';
 import 'package:school_app/services/subjects_provider.dart';
 
-class EditList extends StatelessWidget {
-  const EditList({
+class EditableList extends StatelessWidget {
+  const EditableList({
     Key? key,
     required this.list,
     required this.subjectIndex,
@@ -33,11 +33,13 @@ class EditList extends StatelessWidget {
                 subjectIndex: subjectIndex,
                 listIndex: listIndex);
           } else {
-            return AddGradeButton(
-              listIndex: listIndex,
-              subjectIndex: subjectIndex,
-              gradeIndex: index,
-            );
+            return IconButton(
+                onPressed: () {
+                  Provider.of<SubjectsProvider>(context, listen: false)
+                      .addGrade(subjectIndex, listIndex, Grade(1));
+                  EditGradeDialog(context, subjectIndex, listIndex, index);
+                },
+                icon: const Icon(Icons.add));
           }
         },
       ),

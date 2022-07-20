@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:school_app/constants/app_colors.dart';
 import 'package:school_app/constants/app_consts.dart';
 import 'package:school_app/screens/edit_screen/components/edit_app_bar.dart';
-import 'package:school_app/screens/edit_screen/components/edit_lists.dart';
-import 'package:school_app/screens/edit_screen/components/grade_list_edit_widget.dart';
-import 'package:school_app/screens/edit_screen/components/submit_edit_button_widget.dart';
+import 'package:school_app/screens/edit_screen/components/single_grade_list_editable.dart';
+import 'package:school_app/screens/edit_screen/components/grade_lists_editable.dart';
+import 'package:school_app/screens/edit_screen/components/submit_edit_button.dart';
 import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/screens/edit_screen/components/text_input_widget.dart';
 import 'package:school_app/widgets/title_text.dart';
@@ -40,6 +40,7 @@ class EditScreen extends StatelessWidget {
                 //*Settings
                 const SizedBox(height: 30),
 
+                //* Raw text inputs
                 CustomTextInput(
                     controller: nameTextController,
                     initialValue: value.subjects[subjectIndex].name,
@@ -48,6 +49,7 @@ class EditScreen extends StatelessWidget {
                     valitation: (text) => text == null || text.isEmpty
                         ? 'Bitte etwas eingeben'
                         : null),
+
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -83,7 +85,7 @@ class EditScreen extends StatelessWidget {
                   ],
                 ),
 
-                GradeListsEdit(subjectIndex: subjectIndex),
+                GradeListsEditable(subjectIndex: subjectIndex),
 
                 SubmitButton(
                     formKey: _formKey,

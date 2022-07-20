@@ -7,8 +7,8 @@ import 'package:school_app/screens/edit_screen/components/edit_lists.dart';
 import 'package:school_app/services/subjects_provider.dart';
 import 'package:school_app/widgets/title_text.dart';
 
-class GradeListsEdit extends StatelessWidget {
-  const GradeListsEdit({
+class GradeListsEditable extends StatelessWidget {
+  const GradeListsEditable({
     Key? key,
     required this.subjectIndex,
   }) : super(key: key);
@@ -31,6 +31,7 @@ class GradeListsEdit extends StatelessWidget {
               if (index < value.subjects[subjectIndex].gradeLists.length) {
                 return Column(
                   children: [
+                    //* Grade List Title with editable dialog
                     GestureDetector(
                       onTap: () =>
                           EditGradeListNameDialog(context, subjectIndex, index),
@@ -38,13 +39,16 @@ class GradeListsEdit extends StatelessWidget {
                           text: value
                               .subjects[subjectIndex].gradeListNames[index]),
                     ),
-                    EditList(
+
+                    //* The Grade List editable
+                    EditableList(
                         list: value.subjects[subjectIndex].gradeLists[index],
                         subjectIndex: subjectIndex,
                         listIndex: index),
                   ],
                 );
               } else {
+                //* add New List Button
                 return GestureDetector(
                   onTap: () {
                     value.addGradeList("", subjectIndex);
